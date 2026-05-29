@@ -19,6 +19,13 @@ define root view entity ZI_Certificate
       cert_gs               as CertificateGs,
       cert_tuev             as CertificateTuev,
       attachment_ce         as AttachmentCe,
+      @Semantics.largeObject:{
+      mimeType: 'MimetypeCe', 
+      fileName: 'FilenameCe', 
+      acceptableMimeTypes: [ 'image/png',
+                              'image/jpg', 
+                              'application/pdf' ], 
+      contentDispositionPreference:#INLINE }
       mimetype_ce           as MimetypeCe,
       filename_ce           as FilenameCe,
       attachment_gs         as AttachmentGs,
@@ -31,4 +38,5 @@ define root view entity ZI_Certificate
       @Semantics.systemDateTime.localInstanceLastChangedAt: true
       local_last_changed_at as LocalLastChangedAt, 
       _CertificateState
+      
 }
