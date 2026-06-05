@@ -9,7 +9,7 @@
 }
 define root view entity ZI_Certificate
   as select from zbca_certificate
-  composition [0..*] of ZI_CertificateState as _CertificateState
+  composition [0..*] of ZI_CertificateState as _CertificateState  
 {
   key cert_uuid             as CertUUid,
       matnr                 as Product,
