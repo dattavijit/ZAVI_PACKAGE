@@ -1,10 +1,10 @@
-@AbapCatalog.viewEnhancementCategory: [#NONE]
 @AccessControl.authorizationCheck: #NOT_REQUIRED
-@EndUserText.label: 'Flight View - CDS Data Model'
-@Metadata.ignorePropagatedAnnotations: true
+@EndUserText.label: 'Flight View - CDS Data Model'  
 
 
 define view entity ZI_Flight_R as select from /dmo/flight
+association [1] to /DMO/I_Carrier as _Airline on $projection.CarrierId = _Airline.AirlineID
+
 {
     key carrier_id as CarrierId,
     key connection_id as ConnectionId,
@@ -14,6 +14,7 @@ define view entity ZI_Flight_R as select from /dmo/flight
     currency_code as CurrencyCode,
     plane_type_id as PlaneTypeId,
     seats_max as SeatsMax,
-    seats_occupied as SeatsOccupied
+    seats_occupied as SeatsOccupied, 
+    _Airline
  
 }

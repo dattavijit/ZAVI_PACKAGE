@@ -1,7 +1,6 @@
 @AbapCatalog.viewEnhancementCategory: [#NONE]
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: 'Connection Consumption View'
-@Metadata.ignorePropagatedAnnotations: true
 @Metadata.allowExtensions: true
 @Search.searchable: true
 define view entity ZC_Connection_R
@@ -9,35 +8,50 @@ define view entity ZC_Connection_R
   association [1..*] to ZC_FLIGHT_R as _Flight on  $projection.AirlineID    = _Flight.CarrierId
                                                and $projection.ConnectionId = _Flight.ConnectionId
 {
-      @ObjectModel.text.association: '_Airline'
+
+      @Search.defaultSearchElement: true
       @Consumption.valueHelpDefinition: [{ entity: {name: '/DMO/I_Carrier_StdVH', element: 'AirlineID' }}]
       @ObjectModel.text.element: ['AirlineName']
   key AirlineID,
   key ConnectionId,
-      
-      _Airline.Name                                                  as AirlineName,
+
+      _Airline.Name          as AirlineName,
       @ObjectModel.text.association: '_DepartureAirport'
       @Consumption.valueHelpDefinition: [{ entity: {name: '/DMO/I_Airport_StdVH', element: 'AirportID' }}]
       @Search.defaultSearchElement: true
       @Search.fuzzinessThreshold: 0.7
+      @ObjectModel.text.element: ['DepartureAirportName']
       DepartureAirport,
-      
+
+      @Search.defaultSearchElement: true
+      @Search.fuzzinessThreshold: 0.7
+      _DepartureAirport.Name as DepartureAirportName,
+ 
+  
       @ObjectModel.text.association: '_DestinationAirport'
       @Consumption.valueHelpDefinition: [{ entity: {name: '/DMO/I_Airport_StdVH', element: 'AirportID' }}]
       @Search.defaultSearchElement: true
       @Search.fuzzinessThreshold: 0.7
       DestinationAirport,
-      
+
+
+      @Search.defaultSearchElement: true
+      @Search.fuzzinessThreshold: 0.7
+      _DestinationAirport.Name as DestinationAirportName,
       DepartureTime,
-      
+
       ArrivalTime,
-      
+
       @Semantics.quantity.unitOfMeasure: 'DistanceUnit'
       Distance,
-      
+
       DistanceUnit,
+      @Search.defaultSearchElement: true
       _Flight,
+
       _Airline,
+      
       _DepartureAirport,
+      @Search.defaultSearchElement: true
       _DestinationAirport
 }

@@ -59,7 +59,7 @@ annotate entity ZC_Connection_R with
   @UI.selectionField: [{ position: 10 }]
   @EndUserText.quickInfo: 'Airline that operates the flight connection'
   @UI.fieldGroup: [{ position: 10, qualifier: 'General_FG' }]
-
+  @UI.textArrangement: #TEXT_ONLY
         
   AirlineID;
 
