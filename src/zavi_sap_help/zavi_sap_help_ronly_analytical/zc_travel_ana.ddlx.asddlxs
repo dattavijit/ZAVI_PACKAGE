@@ -1,0 +1,53 @@
+@Metadata.layer: #CORE
+@UI.headerInfo.title.type: #STANDARD
+@UI.headerInfo.description.value: 'TravelId'
+@UI.headerInfo.description.type: #STANDARD
+@UI.presentationVariant: [{ text: 'Default' ,
+                              sortOrder:[{ by: 'OverallStatus', direction: #ASC }],
+                              groupBy: [  'OverallStatus' ],
+                              visualizations: [ {  type: #AS_LINEITEM },
+                              {  type: #AS_CHART }] }]
+
+annotate entity ZC_TRAVEL_ANA
+    with 
+{
+
+    @UI.hidden: true
+    TravelUuid;
+    
+    @UI.lineItem: [{position: 10, label: 'TravelId'}]
+    TravelId;
+    
+    @UI.lineItem: [{position: 20, label: 'AgencyId'}]
+    AgencyId;
+    
+    @UI.lineItem: [{position: 30, label: 'CustomerId'}]
+    CustomerId;
+    
+    @UI.lineItem: [{position: 40, label: 'BeginDate'}]
+    BeginDate;
+    
+    @UI.lineItem: [{position: 50, label: 'EndDate'}]
+    EndDate;
+    
+    @UI.lineItem: [{position: 60, label: 'BookingFee'}]
+    BookingFee;
+    
+    @UI.lineItem: [{position: 70, label: 'TotalPrice'}]
+    MinBookingFee;
+    
+    @UI.lineItem: [{position: 80, label: 'TotalPrice'}]
+    MaxBookingFee;
+    
+    @UI.lineItem: [{position: 90, label: 'Different Currencies'}]
+    differentCurrencies;
+    
+    @UI.lineItem: [{position: 100, label: 'TotalPrice'}]
+    TotalPrice;
+    
+    @UI.lineItem: [{position: 105, label: 'Description'}]
+    Description;
+    @UI.lineItem: [{position: 110, label: 'OverallStatus'}]
+    OverallStatus;
+    
+}
