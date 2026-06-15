@@ -4,28 +4,28 @@
 @Metadata.ignorePropagatedAnnotations: true
 define view entity ZI_BOOKING_M
   as select from /dmo/booking_m
-  association        to parent ZI_TRAVEL_M       as _Travel        on  $projection.TravelId = _Travel.TravelId
+  association        to parent ZI_TRAVEL_M       as _Travel        on  $projection.travel_id = _Travel.travel_id
   composition [0..*] of ZI_BOOKSUPPL_M           as _BookingSupplement
 
-  association [1..1] to /DMO/I_Customer          as _Customer      on  $projection.CustomerId = _Customer.CustomerID
-  association [1..1] to /DMO/I_Carrier           as _Carrier       on  $projection.CarrierId = _Carrier.AirlineID
-  association [1..1] to /DMO/I_Connection        as _Connection    on  $projection.CarrierId    = _Connection.AirlineID
-                                                                   and $projection.ConnectionId = _Connection.ConnectionID
-  association [1..1] to /DMO/I_Booking_Status_VH as _BookingStatus on  $projection.BookingStatus = _BookingStatus.BookingStatus
+  association [1..1] to /DMO/I_Customer          as _Customer      on  $projection.customer_id = _Customer.CustomerID
+  association [1..1] to /DMO/I_Carrier           as _Carrier       on  $projection.carrier_id = _Carrier.AirlineID
+  association [1..1] to /DMO/I_Connection        as _Connection    on  $projection.carrier_id    = _Connection.AirlineID
+                                                                   and $projection.connection_id = _Connection.ConnectionID
+  association [1..1] to /DMO/I_Booking_Status_VH as _BookingStatus on  $projection.booking_status = _BookingStatus.BookingStatus
 
 {
-  key travel_id       as TravelId,
-  key booking_id      as BookingId,
-      booking_date    as BookingDate,
-      customer_id     as CustomerId,
-      carrier_id      as CarrierId,
-      connection_id   as ConnectionId,
-      flight_date     as FlightDate,
-      @Semantics.amount.currencyCode: 'CurrencyCode'
-      flight_price    as FlightPrice,
-      currency_code   as CurrencyCode,
-      booking_status  as BookingStatus,
-      last_changed_at as LastChangedAt,
+  key travel_id,
+  key booking_id,
+      booking_date,
+      customer_id,
+      carrier_id,
+      connection_id,
+      flight_date,
+      @Semantics.amount.currencyCode: 'Currency_Code'
+      flight_price,
+      currency_code,
+      booking_status,
+      last_changed_at,
       _Travel,
       _BookingSupplement,
       _Customer,
