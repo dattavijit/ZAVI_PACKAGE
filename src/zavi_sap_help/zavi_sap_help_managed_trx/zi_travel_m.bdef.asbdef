@@ -1,0 +1,51 @@
+managed implementation in class ZCL_ZI_TRAVEL_M_IMPL unique;
+strict ;
+
+define behavior for ZI_TRAVEL_M alias travel
+implementation in class ZCL_ZI_TRAVEL_M_IMPL unique
+persistent table /dmo/travel_m
+lock master
+early numbering
+authorization master ( none )
+etag master last_changed_at
+
+{
+  mapping for /dmo/travel_m corresponding;
+
+  create;
+  update;
+  delete;
+  association _Booking { create; }
+
+  field ( readonly ) travel_id;
+}
+
+define behavior for ZI_BOOKING_M  alias booking
+implementation in class ZCL_ZI_BOOKING_M_IMPL unique
+persistent table /dmo/booking_m
+early numbering
+lock dependent by _Travel
+authorization dependent by _Travel
+
+{
+  update;
+  association _BookingSupplement { create; }
+  association _Travel{ }
+
+  field ( readonly ) travel_id, booking_id;
+}
+
+define behavior for ZI_BOOKSUPPL_M alias booksuppl
+implementation in class ZCL_ZI_BOOK_SUPPL_M_IMPL unique
+persistent table /dmo/booksuppl_m
+early numbering
+lock dependent by _Travel
+authorization dependent by _Travel
+//etag master <field_name>
+{
+  update;
+  association _Travel{ }
+  association _Booking{ }
+
+  field ( readonly ) travel_id, booking_id, booking_supplement_id;
+}
