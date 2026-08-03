@@ -1,0 +1,27 @@
+projection;
+use draft;
+
+define behavior for ZC_COFFEE_RUN alias CoffeeRun
+{
+  use create;
+  use update;
+  use delete;
+
+  use action Resume;
+  use action Edit;
+  use action Activate;
+  use action Discard;
+  use action Prepare;
+
+  use action CloseRun;
+
+  use association _Orders { create; with draft; }
+}
+
+define behavior for ZC_DRINK_ORDER alias DrinkOrder
+{
+  use update;
+  use delete;
+
+  use association _Run { with draft; }
+}

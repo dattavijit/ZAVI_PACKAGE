@@ -1,26 +1,13 @@
-CLASS zcl_certi_service DEFINITION
-  PUBLIC
-  FINAL
-  CREATE PUBLIC .
+class ZCL_CERTI_SERVICE definition
+  public
+  create private .
 
-  PUBLIC SECTION.
-
-    INTERFACES if_sadl_exit .
-    INTERFACES if_sadl_exit_calc_element_read .
-  PROTECTED SECTION.
-  PRIVATE SECTION.
+public section.
+protected section.
+private section.
 ENDCLASS.
 
 
 
-CLASS zcl_certi_service IMPLEMENTATION.
-
-
-  METHOD if_sadl_exit_calc_element_read~calculate.
-
-  ENDMETHOD.
-
-
-  METHOD if_sadl_exit_calc_element_read~get_calculation_info.
-  ENDMETHOD.
+CLASS ZCL_CERTI_SERVICE IMPLEMENTATION.
 ENDCLASS.

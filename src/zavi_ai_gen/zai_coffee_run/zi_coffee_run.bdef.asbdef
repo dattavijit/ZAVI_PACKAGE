@@ -1,0 +1,69 @@
+managed implementation in class zbp_i_coffee_run unique;
+with draft;
+
+define behavior for ZI_COFFEE_RUN alias CoffeeRun
+persistent table zavi_coffee_run
+draft table zavi_coffrun_d
+early numbering
+lock master
+total etag changed_at
+etag master changed_at
+{
+  create;
+  update;
+  delete;
+
+  field ( readonly ) runid;
+  field ( readonly ) created_at;
+  field ( readonly ) created_by;
+  field ( readonly ) changed_at;
+  field ( readonly ) changed_by;
+
+  field ( mandatory ) runner_name;
+  field ( mandatory ) cafe_name;
+
+  association _Orders { create; with draft; }
+
+  determination setInitialStatus     on modify { create; }
+  determination setCreateAdminFields on save   { create; }
+  determination setChangeAdminFields on save   { create; update; }
+
+  validation validateRunner on save { create; update; field runner_name; }
+  validation validateCafe   on save { create; update; field cafe_name; }
+  validation validateTimes  on save { create; update; field departure_time, order_cutoff_time; }
+  validation validateStatus on save { create; update; field status; }
+
+  action ( features : instance ) CloseRun result [1] $self;
+
+  draft action Resume;
+  draft action Edit;
+  draft action Activate;
+  draft action Discard;
+  draft determine action Prepare
+  {
+    validation validateRunner;
+    validation validateCafe;
+    validation validateTimes;
+    validation validateStatus;
+  }
+}
+
+define behavior for ZI_DRINK_ORDER alias DrinkOrder
+persistent table zavi_drink_order
+draft table zavi_drinkord_d
+lock dependent by _Run
+early numbering
+etag master changed_at
+{
+  update;
+  delete;
+
+  field ( readonly ) created_at;
+  field ( readonly ) created_by;
+  field ( readonly ) changed_at;
+  field ( readonly ) changed_by;
+  field ( readonly : update ) orderid;
+  field ( readonly : update ) runid;
+
+  association _Run { with draft; }
+}

@@ -1,0 +1,5 @@
+@EndUserText.label: 'Coffee Run Service'
+define service ZCOFFEE_RUN_SRV {
+  expose ZC_COFFEE_RUN as CoffeeRun;
+  expose ZC_DRINK_ORDER as DrinkOrder;
+}

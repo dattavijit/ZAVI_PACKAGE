@@ -3,7 +3,7 @@
  <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
   <asx:values>
    <DEVC>
-    <CTEXT>ZAVI_SAP_HELP_MANAGED_TRX</CTEXT>
+    <CTEXT>Coffee Run RAP Application</CTEXT>
    </DEVC>
   </asx:values>
  </asx:abap>

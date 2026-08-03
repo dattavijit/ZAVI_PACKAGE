@@ -1,5 +1,13 @@
-CLASS zcl_zi_booking_m_impl DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zi_travel_m.
+class ZCL_ZI_BOOKING_M_IMPL definition
+  public
+  for behavior of ZI_TRAVEL_M .
+
+public section.
+protected section.
+private section.
 ENDCLASS.
 
-CLASS zcl_zi_booking_m_impl IMPLEMENTATION.
+
+
+CLASS ZCL_ZI_BOOKING_M_IMPL IMPLEMENTATION.
 ENDCLASS.
